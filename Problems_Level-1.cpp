@@ -107,3 +107,54 @@ int main(){
 }
 
 //*************************************************************************************************************************************************
+
+/* Problem 5 : Given an array of length N and an integer x, you need to find if x is present in the array or not. Return true or false.
+               Do it recursively.
+               
+  Approach : The base case is when size=0 , return 0. Now the recursive relation is if input[0]=x , return true. Then call the recursive function*/
+
+#include<iostream>
+using namespace std;
+
+bool checkNumber(int input[], int size, int x) {
+	if(size==0){
+        return false;
+    }
+ else if(input[0]==x){
+        return true;
+    }
+ checkNumber(input+1,size-1,x);
+}
+int main(){
+  int n,x;
+  cin>>n>>x;
+  int arr[n];
+  for(int i=0;i<n;i++){
+      cin>>arr[i];
+  }
+  cout<<checkNumber(arr,n,x)<<endl;
+}
+//*******************************************************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
