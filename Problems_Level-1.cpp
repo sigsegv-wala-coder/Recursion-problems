@@ -157,8 +157,32 @@ int main(){
 
 //********************************************************************************************************************************************************
 
+/* Problem 7 : Geometric Sum recursively. 1 + 1/2 + 1/4 + 1/8 + ........ + 1/2^k . 
+
+Approach : Break the series into 2 parts. First (k-1) terms and the kth term. The base case is when k=0 , return 1. */
+
+#include <iostream>
+#include <math.h>
+#include <iomanip>
+#include "solution.h"
+using namespace std;
+
+double geometricSum(int k) {
+	if(k==0){
+           return 1;
+	}
+	return (1/pow(2,k)) + geometricSum(k-1);
+}
 
 
+int main() {
+    int k;
+    cin >> k;
+    cout << fixed << setprecision(5);    //upto 5 decimal places
+    cout << geometricSum(k) << endl;   
+}
+
+//******************************************************************************************************************************************************
 
 
 
