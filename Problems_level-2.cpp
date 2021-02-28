@@ -76,3 +76,103 @@ int main(){
     cin >> x;
     cout << lastIndex(input, n, x) << endl;
 }
+
+//******************************************************************************************************************************************************
+
+/* Problem 3 : Given an array of length N and an integer x, you need to find all the indexes where x is present in the input array.
+               Save all the indexes in an array (in increasing order). Do this recursively. Indexing in the array starts from 0.
+	       
+Approach 1 :   Call the recursive function from 2nd element. Now, update each index by adding 1 to it. Check for the element at
+	       position 0. If it exists, then shift each element right by 1 position and place the index 0 at 0th position in 
+	       output array. Ofcourse, increase the output array size by 1. The base case is when size=0 , return 0.*/
+#include<iostream>
+using namespace std;
+int allIndexes(int input[], int size, int x, int output[]) {
+	if(size==0){
+        return 0;
+    }
+    int ans=allIndexes(input+1,size-1,x,output);
+    if(input[0]==x){
+        for(int i=ans-1;i>=0;i--){
+            output[i+1]=output[i]+1;
+        }
+        output[0]=0;
+        ans++;
+    }
+    else{
+        for(int i=ans-1;i>=0;i--){
+            output[i]=output[i]+1;
+        }
+    }
+    return ans;
+}
+int main(){
+    int n;
+    cin >> n;
+  
+    int *input = new int[n];
+    
+    for(int i = 0; i < n; i++) {
+        cin >> input[i];
+    }
+    
+    int x;
+    cin >> x;
+    
+    int *output = new int[n];
+    
+    int size = allIndexes(input, n, x, output);
+    for(int i = 0; i < size; i++) {
+        cout << output[i] << " ";
+    }
+
+    delete [] input;
+    delete [] output;
+}       
+
+/* Approach 2 : Call recursive function as (input , size-1 , x , output). Here the extra work to update each element by 1 will be vanished
+                and we have to check for the last element. If it exits then place the last index at the last position of output array.*/
+
+#include<iostream>
+using namespace std;
+
+int allIndexes(int input[], int size, int x, int output[]) {
+	if(size==0){
+        return 0;
+    }
+    int ans=allIndexes(input,size-1,x,output);
+    if(input[size-1]==x){
+        output[ans]=size-1;
+        ans++;
+    }
+    return ans;
+}
+	int main(){
+    int n;
+    cin >> n;
+  
+    int *input = new int[n];
+    
+    for(int i = 0; i < n; i++) {
+        cin >> input[i];
+    }
+    
+    int x;
+    cin >> x;
+    
+    int *output = new int[n];
+    
+    int size = allIndexes(input, n, x, output);
+    for(int i = 0; i < size; i++) {
+        cout << output[i] << " ";
+    }
+
+    delete [] input;
+    delete [] output;
+}       
+
+//*************************************************************************************************************************************************************
+	       
+	       
+	       
+	       
