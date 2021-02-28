@@ -172,7 +172,47 @@ int allIndexes(int input[], int size, int x, int output[]) {
 }       
 
 //*************************************************************************************************************************************************************
-	       
-	       
-	       
+/*	       
+Problem 4 : Check whether a given String S is a palindrome using recursion. Return true or false.
+
+Approach : Here, we will compare the first and last element and pass the rest of the string as a recursive function. The base case will
+	   be when the string contains 0 or 1 element, return true. 	
+*/
+#include<iostream>
+#include<string.h>
+using namespace std;
+bool checkPalindrome_helper(char input[] , int start , int end){
+    if(input[0]=='\0' || input[1]=='\0'){
+        return true;
+    }
+    if(start>=end){
+        return true;
+    }
+    if(input[start]==input[end]){
+        return checkPalindrome_helper(input , start+1 , end-1);
+    }
+    else{
+        return false;
+    }
+}
+
+bool checkPalindrome(char input[]) {
+    
+	int len=strlen(input);
+    return checkPalindrome_helper(input,0,len-1);
+}
+
+int main() {
+    char input[50];
+    cin >> input;
+    
+    if(checkPalindrome(input)) {
+        cout << "true" << endl;
+    }
+    else {
+        cout << "false" << endl;
+    }
+}
+
+//**************************************************************************************************************************************************************	       
 	       
