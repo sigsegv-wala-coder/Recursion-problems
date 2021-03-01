@@ -215,4 +215,38 @@ int main() {
 }
 
 //**************************************************************************************************************************************************************	       
-	       
+/*	       
+Problem 5 : Remove all x occuring in the string recursively.
+
+Approach : We'll see along coding the problem             */
+
+#include<iostream>
+using namespace std;
+
+void removeX(char input[]){
+	if(input[0]=='\0'){                // Base case. If there is no element in string, simply return the string
+	     return;	   
+	}
+	if(input[0]!='x'){	           // Now if first character is not X , call the recursive function for remaining string
+	    removeX(input+1);	
+	}
+	else{
+		int i=1;                             // if first char is X , then shift each elemnent leftwards by 1 position.
+	   	for(;input[0]!='\0';i++){
+			input[i-1]=input[i];
+			
+		}
+		input[i-1]=input[i];
+		removeX(input);                  // Call the recursive ffunction over remaining string. Note that we have passed input as argument
+		                                 //   instead of (input+1) as after shifting the characters, the string already becomes smaller.
+	}
+}
+int main(){
+	int str[100];
+	cin>>str;
+	removeX(str);
+	cout<<str<<endl;
+}
+
+//*******************************************************************************************************************************************************************
+/*
